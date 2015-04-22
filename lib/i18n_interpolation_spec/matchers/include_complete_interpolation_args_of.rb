@@ -6,7 +6,7 @@ RSpec::Matchers.define :include_complete_interpolation_args_of do |subject_filep
 
     t1, t2 = subject_locale.translations, object_locale.translations
 
-    @missing_args = I18nInterpolationSpec::InterpolationChecker.check t1, t2
+    @missing_args = I18nInterpolationSpec::Checker.check t1, t2
     @missing_args.empty?
   end
 
