@@ -1,31 +1,36 @@
-# I18nInterpolationSpec
+i18n_interpolation_spec
+=======================
 
-TODO: Write a gem description
+**i18n_interpolation_spec provides RSpec matchers for testing the completeness of interpolation arguments in locale files.**  
+It's great to use with [tigrish/i18n-spec](https://github.com/tigrish/i18n-spec).
 
-## Installation
 
-Add this line to your application's Gemfile:
+Installation
+------------
+
+Add the gem to your Gemfile.
 
 ```ruby
-gem 'i18n_interpolation_spec'
+gem 'i18n_interpolation_spec', group: :test
 ```
 
-And then execute:
 
-    $ bundle
+Matchers
+--------
 
-Or install it yourself as:
+```ruby
+describe 'config/locales/fr.yml' do
+  it { is_expected.to be_a_complete_interpolation_of 'config/locales/en.yml' }
+end
 
-    $ gem install i18n_interpolation_spec
+describe 'config/locales/it.yml' do
+  it { is_expected.to have_mutual_interpolation_of 'config/locales/en.yml' }
+end
+```
 
-## Usage
 
-TODO: Write usage instructions here
+License
+-------
 
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/i18n_interpolation_spec/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+This project is copyright by [Creasty](http://creasty.com), released under the MIT license.  
+See `LICENSE` file for details.

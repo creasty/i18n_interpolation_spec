@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = I18nInterpolationSpec::VERSION
   spec.authors       = ['Yuki Iwanaga']
   spec.email         = ['yuki@creasty.com']
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{RSpec matchers for testing the completeness of interpolation arguments in locale files}
+  spec.description   = %q{RSpec matchers for testing the completeness of interpolation arguments in locale files}
   spec.homepage      = 'https://github.com/creasty/i18n_interpolation_spec'
   spec.license       = 'MIT'
 
