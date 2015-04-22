@@ -13,12 +13,16 @@ module I18nInterpolationSpec
       @content ||= File.read @filepath
     end
 
-    def translations
-      @translations ||= YAML.load(content).freeze
+    def content_yaml
+      @content_yaml ||= YAML.load(content).freeze
     end
 
     def locale
-      @locale ||= translations.keys.first
+      @locale ||= content_yaml.keys.first
+    end
+
+    def translations
+      content_yaml[locale]
     end
 
   end

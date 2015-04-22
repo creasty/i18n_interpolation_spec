@@ -2,14 +2,14 @@ module I18nInterpolationSpec
   module Checker
     class << self
 
-      def check(t1, t2)
+      def strict_check(t1, t2)
         a1, a2 = interpolations(t1), interpolations(t2)
+
         missing_keys = {}
 
-        a1.each do |(scope, keys)|
-          next unless a2.respond_to? :[]
-          diff = keys - (a2[scope] || [])
-          missing_keys[scope] = diff unless diff.empty?
+        (a1.keys & a2.keys).each do |key|
+          diff = (a1[key] - a2[key]) | (a2[key] - a1[key])
+          missing_keys[key] = diff unless diff.empty?
         end
 
         missing_keys
@@ -29,7 +29,7 @@ module I18nInterpolationSpec
             end
           else
             args = extract_args t
-            result[scopes.join('.')] = args unless args.empty?
+            result[scopes.join('.')] = args
           end
         end
 

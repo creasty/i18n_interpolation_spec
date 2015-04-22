@@ -29,7 +29,7 @@ describe I18nInterpolationSpec::LocaleFile do
 
   end
 
-  describe '#translations' do
+  describe '#content_yaml' do
 
     it 'should return a hash object of translations' do
       locale_file = locale_file_with_content <<-YAML
@@ -43,7 +43,7 @@ describe I18nInterpolationSpec::LocaleFile do
         }
       }
 
-      expect(locale_file.translations).to eq(hash)
+      expect(locale_file.content_yaml).to eq(hash)
     end
 
   end
@@ -57,6 +57,23 @@ describe I18nInterpolationSpec::LocaleFile do
       YAML
 
       expect(locale_file.locale).to eq('en')
+    end
+
+  end
+
+  describe '#translations' do
+
+    it 'should return a hash object of translations' do
+      locale_file = locale_file_with_content <<-YAML
+        en:
+          hello: world
+      YAML
+
+      hash = {
+        'hello' => 'world'
+      }
+
+      expect(locale_file.translations).to eq(hash)
     end
 
   end
