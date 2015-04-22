@@ -1,4 +1,5 @@
 require_relative 'i18n_interpolation_spec/version'
 require_relative 'i18n_interpolation_spec/interpolation_checker'
+require_relative 'i18n_interpolation_spec/locale_file'
 
 module I18nInterpolationSpec; end
