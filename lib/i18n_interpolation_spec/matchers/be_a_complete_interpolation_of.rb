@@ -1,4 +1,4 @@
-RSpec::Matchers.define :include_interpolation_args_of do |subject_filepath|
+RSpec::Matchers.define :be_a_complete_interpolation_of do |subject_filepath|
 
   match do |object_filepath|
     object_locale  = I18nInterpolationSpec::LocaleFile.new object_filepath
@@ -6,7 +6,7 @@ RSpec::Matchers.define :include_interpolation_args_of do |subject_filepath|
 
     t1, t2 = subject_locale.translations, object_locale.translations
 
-    @missing_args = I18nInterpolationSpec::Checker.loose_check t1, t2
+    @missing_args = I18nInterpolationSpec::Checker.strict_check t1, t2
     @missing_args.empty?
   end
 
