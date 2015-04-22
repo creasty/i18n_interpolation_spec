@@ -4,7 +4,7 @@ module LocaleFileHelper
 
   def locale_file_with_content(content)
     locale_file = I18nInterpolationSpec::LocaleFile.new 'test.yml'
-    locale_file.stub(:content) { content }
+    expect(locale_file).to receive(:content).and_return(content)
     locale_file
   end
 
