@@ -2,7 +2,11 @@ module I18nInterpolationSpec
   module Checker
     class << self
 
-      def check(t1, t2, &checker)
+      def except?(patterns, key)
+        patterns.any? { |pattern|  pattern === key }
+      end
+
+      def check(t1, t2, except, &checker)
         i1, i2 = interpolations(t1), interpolations(t2)
 
         missing_keys = {}
@@ -10,20 +14,21 @@ module I18nInterpolationSpec
         (i1.keys & i2.keys).each do |key|
           a1, a2 = i1[key], i2[key]
           diff = (a1 - a2) | (a2 - a1)
-          missing_keys[key] = diff if checker[a1, a2, diff]
+          next if except? except, key
+          missing_keys[key] = diff if checker[key, a1, a2, diff]
         end
 
         missing_keys
       end
 
-      def strict_check(t1, t2)
-        check t1, t2 do |a1, a2, diff|
+      def strict_check(t1, t2, except: [])
+        check t1, t2, except do |key, a1, a2, diff|
           diff.any?
         end
       end
 
-      def loose_check(t1, t2)
-        check t1, t2 do |a1, a2, diff|
+      def loose_check(t1, t2, except: [])
+        check t1, t2, except do |key, a1, a2, diff|
           a1.any? && a2.any? && (diff == a1 | a2)
         end
       end
