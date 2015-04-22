@@ -26,6 +26,16 @@ end
 describe 'config/locales/it.yml' do
   it { is_expected.to have_mutual_interpolation_of 'config/locales/en.yml' }
 end
+
+describe 'config/locales/es.yml' do
+  it {
+    is_expected.to be_a_complete_interpolation_of 'config/locales/en.yml',
+      except: [
+        'some.key.to.ignore',
+        /^some\.patt[e3]rn\.to\.ignore/,
+      ]
+  }
+end
 ```
 
 
