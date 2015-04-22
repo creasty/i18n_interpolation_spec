@@ -100,4 +100,32 @@ describe I18nInterpolationSpec::Checker do
 
   end
 
+  describe '::loose_check' do
+
+    it 'should return an empty hash if interpolation arguments are fully contained in both arg lists' do
+      expect(I18nInterpolationSpec::Checker.loose_check(t1, t2)).to eq({})
+    end
+
+    it 'should ignore translations that only exists in either hash' do
+      t1[:d] = { only_1: '%{only_1}' }
+      t2[:d] = { only_2: '%{only_2}' }
+
+      expect(I18nInterpolationSpec::Checker.loose_check(t1, t2)).to eq({})
+    end
+
+    it 'should return a hash of missing translations arguments if interpolation arguments are not fully contained in both arg lists' do
+      t1[:a][:aa]    = '%{a_aa_arg} %{only}'
+      t1[:c][0][:ca] = ''
+      t2[:a][:ab]    = '%{a_ab_ARG}'
+      t2[:b][:ba]    = ''
+
+      args = {
+        'a.ab' => %w[a_ab_arg a_ab_ARG],
+      }
+
+      expect(I18nInterpolationSpec::Checker.loose_check(t1, t2)).to eq args
+    end
+
+  end
+
 end
