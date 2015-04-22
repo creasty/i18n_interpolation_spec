@@ -1,7 +1,10 @@
 i18n_interpolation_spec
 =======================
 
-**i18n_interpolation_spec provides RSpec matchers for testing the completeness of interpolation arguments in locale files.**  
+[![Circle CI](https://circleci.com/gh/creasty/i18n_interpolation_spec/tree/master.svg?style=svg)](https://circleci.com/gh/creasty/i18n_interpolation_spec/tree/master)
+
+**i18n_interpolation_spec provides RSpec matchers for testing the completeness of interpolation arguments in locale files.**
+
 It's great to use with [tigrish/i18n-spec](https://github.com/tigrish/i18n-spec).
 
 
