@@ -1,6 +1,7 @@
 require_relative 'i18n_interpolation_spec/version'
 require_relative 'i18n_interpolation_spec/checker'
 require_relative 'i18n_interpolation_spec/locale_file'
+require_relative 'i18n_interpolation_spec/matchers/helper'
 require_relative 'i18n_interpolation_spec/matchers/have_mutual_interpolation_of'
 require_relative 'i18n_interpolation_spec/matchers/be_a_complete_interpolation_of'
 

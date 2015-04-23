@@ -1,5 +1,7 @@
 RSpec::Matchers.define :be_a_complete_interpolation_of do |subject_filepath, except: []|
 
+  extend I18nInterpolationSpec::Helper
+
   match do |object_filepath|
     object_locale  = I18nInterpolationSpec::LocaleFile.new object_filepath
     subject_locale = I18nInterpolationSpec::LocaleFile.new subject_filepath
@@ -10,7 +12,7 @@ RSpec::Matchers.define :be_a_complete_interpolation_of do |subject_filepath, exc
     @missing_args.empty?
   end
 
-  failure_message do |filepath|
+  failed do |filepath|
     listed = @missing_args.map do |(scope, args)|
       args = args.map { |arg| '%%{%s}' % arg }.join ', '
       "\n - %s should have %s" % [scope, args]
