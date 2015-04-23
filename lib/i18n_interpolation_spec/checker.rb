@@ -29,7 +29,7 @@ module I18nInterpolationSpec
 
       def loose_check(t1, t2, except: [])
         check t1, t2, except do |key, a1, a2, diff|
-          a1.any? && a2.any? && (diff == a1 | a2)
+          a1.any? && a2.any? && (a1 & a2).empty?
         end
       end
 
